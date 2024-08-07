@@ -1,0 +1,64 @@
+/* Import Google Fonts (you can include this in your HTML <head> or in your CSS file) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.expense {
+    margin-top: 3%;
+    width: 80%;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.expense-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.expense-date {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.expense-amount {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+.expense-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.expense-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.edit-button {
+    color: #ffc107;
+}
+
+.delete-button {
+    color: #dc3545;
+}
