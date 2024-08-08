@@ -13,16 +13,16 @@ export default function Transactions() {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const debtUserResponse = await axios.get(`http://localhost:8080/Splitwise-App/users/${debtUserId}/settle/${lenderId}`);
+                const debtUserResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${debtUserId}/settle/${lenderId}`);
                 setExpensesDTOSFromDebtUser(debtUserResponse.data.expensesDTOS);
 
-                const lenderResponse = await axios.get(`http://localhost:8080/Splitwise-App/users/${lenderId}/settle/${debtUserId}`);
+                const lenderResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${lenderId}/settle/${debtUserId}`);
                 setExpensesDTOSFromLender(lenderResponse.data.expensesDTOS);
 
-                const debtUserDetails = await axios.get(`http://localhost:8080/Splitwise-App/users/${debtUserId}`);
+                const debtUserDetails = await axios.get(`http://localhost:8080/splitwise-app/users/${debtUserId}`);
                 setDebtUserName(debtUserDetails.data.name);
 
-                const lenderDetails = await axios.get(`http://localhost:8080/Splitwise-App/users/${lenderId}`);
+                const lenderDetails = await axios.get(`http://localhost:8080/splitwise-app/users/${lenderId}`);
                 setLenderName(lenderDetails.data.name);
             } catch (error) {
                 console.error("Error getting history", error);

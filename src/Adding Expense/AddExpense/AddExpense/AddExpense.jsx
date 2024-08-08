@@ -13,7 +13,7 @@ export default function AddExpense() {
 
     useEffect(() => {
         if (userId) {
-            axios.get(`http://localhost:8080/Splitwise-App/users/${userId}`)
+            axios.get(`http://localhost:8080/splitwise-app/users/${userId}`)
                 .then(response => {
                     setCurrentUser(response.data);
                 })

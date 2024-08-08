@@ -19,22 +19,22 @@ export default function EditExpense() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const currentUserResponse = await axios.get(`http://localhost:8080/Splitwise-App/users/${userId}`);
+                const currentUserResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${userId}`);
                 const currentUser = currentUserResponse.data;
                 setCurrentUser(currentUser);
 
-                const allUsersResponse = await axios.get('http://localhost:8080/Splitwise-App/users');
+                const allUsersResponse = await axios.get('http://localhost:8080/splitwise-app/users');
                 const allUsers = allUsersResponse.data;
                 setAllUsers(allUsers);
 
-                const expenseResponse = await axios.get(`http://localhost:8080/Splitwise-App/users/${userId}/expenses/${expenseId}`);
+                const expenseResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${userId}/expenses/${expenseId}`);
                 const expense = expenseResponse.data;
                 setTitle(expense.title);
                 setAmount(expense.amount);
 
                 const debtUsersDetails = await Promise.all(
                     expense.debtUsersList.map(async (debtUser) => {
-                        const userResponse = await axios.get(`http://localhost:8080/Splitwise-App/users/${debtUser.userId}`);
+                        const userResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${debtUser.userId}`);
                         const user = userResponse.data;
                         return {
                             ...debtUser,
@@ -120,7 +120,7 @@ export default function EditExpense() {
         };
 
         try {
-            await axios.put(`http://localhost:8080/Splitwise-App/users/${userId}/expenses/${expenseId}`, expenseData, {
+            await axios.put(`http://localhost:8080/splitwise-app/users/${userId}/expenses/${expenseId}`, expenseData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

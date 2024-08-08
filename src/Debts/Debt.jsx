@@ -10,7 +10,7 @@ export default function Debt({ Debt, debtUserId }) {
 
     const handleSettle = async () => {
         try {
-            await axios.put(`http://localhost:8080/Splitwise-App/users/${debtUserId}/settle/${Debt.userId}`);
+            await axios.put(`http://localhost:8080/splitwise-app/users/${debtUserId}/settle/${Debt.userId}`);
             alert('Debt settled successfully');
         } catch (error) {
             console.error('Error settling debt', error);

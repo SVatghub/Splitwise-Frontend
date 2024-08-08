@@ -9,7 +9,7 @@ export default function Debts({userId}) {
     const[error,setError] = useState(null)
 
     useEffect(()=>{
-        axios.get(`http://localhost:8080/Splitwise-App/users/${userId}/to-pay`)
+        axios.get(`http://localhost:8080/splitwise-app/users/${userId}/debts-user-to-user`)
         .then((response)=>{
             setUserDebts(response.data);
             setLoading(false);

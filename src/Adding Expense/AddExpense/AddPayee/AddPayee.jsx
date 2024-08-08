@@ -9,7 +9,7 @@ export default function AddPayee({ splitAmount, currentUser, title, isValidTitle
     const [addedUsers, setAddedUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Splitwise-App/users')
+        axios.get('http://localhost:8080/splitwise-app/users')
             .then(response => {
                 setUsers(response.data);
             })

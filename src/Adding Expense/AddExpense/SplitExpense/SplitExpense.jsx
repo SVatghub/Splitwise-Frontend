@@ -56,7 +56,7 @@ export default function SplitExpense({ addedUsers, splitAmount, currentUser, tit
             };
 
             try {
-                await axios.post(`http://localhost:8080/Splitwise-App/users/${currentUser.userId}/expenses`, expenseData, {
+                await axios.post(`http://localhost:8080/splitwise-app/users/${currentUser.userId}/expenses`, expenseData, {
                     headers: {
                         'Content-Type': 'application/json'
                     },

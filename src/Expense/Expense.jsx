@@ -14,7 +14,7 @@ export default function Expense({ dummyExpense, userId }) {
     };
 
     const handleDelete = (expenseId) => {
-        axios.delete(`http://localhost:8080/Splitwise-App/users/${userId}/expenses/${expenseId}`)
+        axios.delete(`http://localhost:8080/splitwise-app/users/${userId}/expenses/${expenseId}`)
             .then(response => {
                 console.log("Expense deleted successfully");
             })

@@ -11,7 +11,7 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Splitwise-App/users')
+        axios.get('http://localhost:8080/splitwise-app/users')
             .then(response => {
                 setUsers(response.data);
             })
@@ -32,7 +32,7 @@ function Login() {
 
     const handleSignUpSubmit = async (name, email) => {
         try {
-            await axios.post('http://localhost:8080/Splitwise-App/users', { name, email }, {
+            await axios.post('http://localhost:8080/splitwise-app/users', { name, email }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

@@ -5,16 +5,17 @@ import Expenses from '../Expense/Expenses';
 import { useParams } from 'react-router-dom';
 import './DashBoard.css';
 
+
+
 export default function DashBoard() {
     const { userId } = useParams();
-
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         if (userId) { 
-            axios.get(`http://localhost:8080/Splitwise-App/users/${userId}`)
+            axios.get(`http://localhost:8080/splitwise-app/users/${userId}`)
                 .then(response => {
                     setUser(response.data);
                     setLoading(false);

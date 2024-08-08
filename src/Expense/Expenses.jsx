@@ -13,7 +13,7 @@ export default function Expenses({userId}) {
     const navigate = useNavigate();
 
     useEffect(()=> { 
-        axios.get(`http://localhost:8080/Splitwise-App/users/${userId}/expenses`)   
+        axios.get(`http://localhost:8080/splitwise-app/users/${userId}/expenses`)   
             .then( response => {
                 setExpenses(response.data);
             })
