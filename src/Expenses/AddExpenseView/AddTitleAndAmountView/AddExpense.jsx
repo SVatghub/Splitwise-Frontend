@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; 
 import axios from 'axios'; 
-import AddPayee from "../AddPayee/AddPayee";
+import AddPayee from "../AddPayeeView/AddPayee";
 import "./AddExpense.css";
 import { USERS_API } from "../../../Constants/ApiConstants";
 

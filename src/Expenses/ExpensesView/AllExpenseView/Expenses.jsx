@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Expense from "./Expense.jsx";
+import Expense from "../ExpenseView/Expense.jsx";
 import './Expenses.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faL, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { EXPENSES_API } from '../Constants/ApiConstants.js';
+import { EXPENSES_API } from '../../../Constants/ApiConstants.js';
 
 export default function Expenses({userId}) {
     const [expenses,setExpenses] = useState([]);

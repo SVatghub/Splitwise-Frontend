@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import { SETTLEMENT_API } from '../Constants/ApiConstants';
+import { SETTLEMENT_API } from '../../Constants/ApiConstants';
 
 export default function Debt({ Debt, debtUserId }) {
     const navigate = useNavigate();

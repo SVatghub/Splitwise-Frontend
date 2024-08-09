@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './AddPayee.css';
-import SplitExpense from "../SplitExpense/SplitExpense";
+import SplitExpense from "../SplitAmountView/SplitExpense.jsx";
 import { USERS_API } from "../../../Constants/ApiConstants";
 
 export default function AddPayee({ splitAmount, currentUser, title, isValidTitleAndAmount }) {

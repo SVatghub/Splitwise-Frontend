@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import './EditExpense.css';
 import axios from 'axios';
-import { EXPENSES_API, USERS_API } from "../Constants/ApiConstants";
+import { EXPENSES_API, USERS_API } from "../../Constants/ApiConstants";
 
 export default function EditExpense() {
     const { userId, expenseId } = useParams();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Debt from './Debt';
+import Debt from '../DebtView/Debt';
 import './Debts.css';
 import axios from 'axios';
-import { DEBTUSERS_API, SETTLEMENT_API } from '../Constants/ApiConstants';
+import {SETTLEMENT_API } from '../../Constants/ApiConstants';
 
 export default function Debts({userId}) {
     const[userDebts,setUserDebts] = useState([])

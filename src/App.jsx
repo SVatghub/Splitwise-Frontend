@@ -1,13 +1,9 @@
 import './App.css'
-import DashBoard from './DashBoard/DashBoard'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import DashBoard from './DashBoard/DashBoard'
 import Login from './Login/Login';
-import Expenses from './Expense/Expenses';
-import Debts from './Debts/Debts';
-import AddExpense from './Adding Expense/AddExpense/AddExpense/AddExpense';
-import AddPayee from './Adding Expense/AddExpense/AddPayee/AddPayee';
-import SplitExpense from './Adding Expense/AddExpense/SplitExpense/SplitExpense';
-import EditExpense from './EditExpense/EditExpense';
+import AddExpense from './Expenses/AddExpenseView/AddTitleAndAmountView/AddExpense.jsx';
+import EditExpense from './Expenses/EditExpenseView/EditExpense.jsx';
 import Transactions from './Transactions/Transactions';
 
 function App() {

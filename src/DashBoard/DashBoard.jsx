@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Debts from '../Debts/Debts';
-import Expenses from '../Expense/Expenses';
+import Debts from '../Debts/DebtsView/Debts';
+import Expenses from '../Expenses/ExpensesView/AllExpenseView/Expenses';
 import { useParams } from 'react-router-dom';
 import './DashBoard.css';
 import { USERS_API } from '../Constants/ApiConstants';
