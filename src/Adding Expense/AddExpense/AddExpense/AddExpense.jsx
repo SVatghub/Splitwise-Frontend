@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios'; 
 import AddPayee from "../AddPayee/AddPayee";
 import "./AddExpense.css";
+import { USERS_API } from "../../../Constants/ApiConstants";
 
 export default function AddExpense() {
     const { userId } = useParams();
@@ -13,7 +14,7 @@ export default function AddExpense() {
 
     useEffect(() => {
         if (userId) {
-            axios.get(`http://localhost:8080/splitwise-app/users/${userId}`)
+            axios.get(USERS_API.GET_BY_ID(userId))
                 .then(response => {
                     setCurrentUser(response.data);
                 })
@@ -24,7 +25,6 @@ export default function AddExpense() {
     }, [userId]);
 
     useEffect(() => {
-        // Update validity based on title and amount
         if (title && amount > 0) {
             setIsValid(true);
         } else {
@@ -37,7 +37,7 @@ export default function AddExpense() {
         if (value > 0) {
             setAmount(value);
         } else {
-            setAmount(0); // Reset to 0 if the value is not valid
+            setAmount(0);
         }
     };
 

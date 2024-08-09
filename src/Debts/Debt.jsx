@@ -4,13 +4,15 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { SETTLEMENT_API } from '../Constants/ApiConstants';
 
 export default function Debt({ Debt, debtUserId }) {
     const navigate = useNavigate();
 
     const handleSettle = async () => {
         try {
-            await axios.put(`http://localhost:8080/splitwise-app/users/${debtUserId}/settle/${Debt.userId}`);
+            let lenderId = Debt.userId;
+            await axios.put(SETTLEMENT_API.SETTLE_NET_DEBTS_BY_DEBTUSERID_LENDERID(debtUserId,lenderId));
             alert('Debt settled successfully');
         } catch (error) {
             console.error('Error settling debt', error);

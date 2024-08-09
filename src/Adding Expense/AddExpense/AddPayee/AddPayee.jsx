@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './AddPayee.css';
 import SplitExpense from "../SplitExpense/SplitExpense";
+import { USERS_API } from "../../../Constants/ApiConstants";
 
 export default function AddPayee({ splitAmount, currentUser, title, isValidTitleAndAmount }) {
     const [users, setUsers] = useState([]);
@@ -9,7 +10,7 @@ export default function AddPayee({ splitAmount, currentUser, title, isValidTitle
     const [addedUsers, setAddedUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/splitwise-app/users')
+        axios.get(USERS_API.GET_ALL)
             .then(response => {
                 setUsers(response.data);
             })

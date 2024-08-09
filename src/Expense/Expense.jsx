@@ -5,22 +5,12 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function Expense({ dummyExpense, userId }) {
+export default function Expense({ expense, userId,handleDelete }) {
     const navigate = useNavigate();
 
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
         return new Date(dateString).toLocaleDateString('en-GB', options);
-    };
-
-    const handleDelete = (expenseId) => {
-        axios.delete(`http://localhost:8080/splitwise-app/users/${userId}/expenses/${expenseId}`)
-            .then(response => {
-                console.log("Expense deleted successfully");
-            })
-            .catch(error => {
-                console.error("There was an error deleting the expense!", error);
-            });
     };
 
     const handleEdit = (expenseId) => {
@@ -30,20 +20,20 @@ export default function Expense({ dummyExpense, userId }) {
     return (
         <div className="expense">
             <div className="expense-actions">
-                <button className="expense-button edit-button" onClick={() => handleEdit(dummyExpense.id)}>
+                <button className="expense-button edit-button" onClick={() => handleEdit(expense.id)}>
                     <FontAwesomeIcon icon={faEdit} />
                 </button>
-                <button className="expense-button delete-button" onClick={() => handleDelete(dummyExpense.id)}>
+                <button className="expense-button delete-button" onClick={() => handleDelete(expense.id)}>
                     <FontAwesomeIcon icon={faTrash} />
                 </button>
             </div>
             <div className="expense-details">
-                <p className="expense-title">{dummyExpense.title}</p>
+                <p className="expense-title">{expense.title}</p>
                 <p className="expense-date">
-                    {formatDate(dummyExpense.createdAt)}
+                    {formatDate(expense.createdAt)}
                 </p>
             </div>
-            <p className="expense-amount">&#8377;{dummyExpense.amount.toFixed(2)}</p>
+            <p className="expense-amount">&#8377;{expense.amount.toFixed(2)}</p>
         </div>
     );
 }

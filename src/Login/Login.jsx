@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {USERS_API} from '../Constants/ApiConstants.js';
 import "./Login.css";
 
-function Login() {
+export default function Login() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:8080/splitwise-app/users')
+        axios.get(USERS_API.GET_ALL)
             .then(response => {
                 setUsers(response.data);
             })
@@ -32,7 +33,7 @@ function Login() {
 
     const handleSignUpSubmit = async (name, email) => {
         try {
-            await axios.post('http://localhost:8080/splitwise-app/users', { name, email }, {
+            await axios.post(USERS_API.ADD_USER, { name, email }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -101,5 +102,3 @@ function Login() {
         </div>
     );
 }
-
-export default Login;

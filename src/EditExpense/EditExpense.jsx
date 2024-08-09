@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import './EditExpense.css';
 import axios from 'axios';
+import { EXPENSES_API, USERS_API } from "../Constants/ApiConstants";
 
 export default function EditExpense() {
     const { userId, expenseId } = useParams();
@@ -19,22 +20,22 @@ export default function EditExpense() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const currentUserResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${userId}`);
+                const currentUserResponse = await axios.get(USERS_API.GET_BY_ID(userId));
                 const currentUser = currentUserResponse.data;
                 setCurrentUser(currentUser);
 
-                const allUsersResponse = await axios.get('http://localhost:8080/splitwise-app/users');
+                const allUsersResponse = await axios.get(USERS_API.GET_ALL);
                 const allUsers = allUsersResponse.data;
                 setAllUsers(allUsers);
 
-                const expenseResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${userId}/expenses/${expenseId}`);
+                const expenseResponse = await axios.get(EXPENSES_API.GET_BY_USERID_EXPENSEID(userId,expenseId));
                 const expense = expenseResponse.data;
                 setTitle(expense.title);
                 setAmount(expense.amount);
 
                 const debtUsersDetails = await Promise.all(
                     expense.debtUsersList.map(async (debtUser) => {
-                        const userResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${debtUser.userId}`);
+                        const userResponse = await axios.get(USERS_API.GET_BY_ID(debtUser.userId));
                         const user = userResponse.data;
                         return {
                             ...debtUser,
@@ -120,7 +121,7 @@ export default function EditExpense() {
         };
 
         try {
-            await axios.put(`http://localhost:8080/splitwise-app/users/${userId}/expenses/${expenseId}`, expenseData, {
+            await axios.put(EXPENSES_API.UPDATE_EXPENSE(userId,expenseId), expenseData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

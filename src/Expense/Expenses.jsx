@@ -2,25 +2,39 @@ import React, { useEffect, useState } from 'react';
 import Expense from "./Expense.jsx";
 import './Expenses.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faL, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { EXPENSES_API } from '../Constants/ApiConstants.js';
 
 export default function Expenses({userId}) {
     const [expenses,setExpenses] = useState([]);
     const [error, setError] = useState(null);
+    const [isExpenseDeleted,setIsExpenseDeleted] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(()=> { 
-        axios.get(`http://localhost:8080/splitwise-app/users/${userId}/expenses`)   
+        axios.get(EXPENSES_API.GET_ALL_USERID(userId))   
             .then( response => {
                 setExpenses(response.data);
             })
             .catch(error => {
                 setError("Error fetching Expenses");
             })
-    },[userId])
+    },[userId,isExpenseDeleted])
+    
+    const handleDelete = (expenseId) => {
+        axios.delete(EXPENSES_API.DELETE_BY_USERID_EXPENSEID(userId,expenseId))
+            .then(response => {
+                console.log("Expense deleted successfully");
+                setIsExpenseDeleted(true);
+            })
+            .catch(error => {
+                console.error("There was an error deleting the expense!", error);
+            });
+    };
+
     const handlePlus = ()=>{
         navigate(`/addExpense/${userId}`)
     }
@@ -41,7 +55,7 @@ export default function Expenses({userId}) {
             {
                 expenses.map(expense => (
                     <div key={expense.id} className="expense-wrapper"> 
-                        <Expense dummyExpense={expense} userId={userId}/>
+                        <Expense expense={expense} userId={userId} handleDelete={handleDelete}/>
                     </div>                   
                 ))
             }

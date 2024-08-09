@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './SplitExpense.css';
+import { EXPENSES_API } from "../../../Constants/ApiConstants";
 
 function getEqualSplits(countUsers, splitAmount) {
     return Array(countUsers).fill(splitAmount / countUsers);
@@ -30,10 +31,8 @@ export default function SplitExpense({ addedUsers, splitAmount, currentUser, tit
     };
 
     const handleRemove = (userId) => {
-        // Remove user from the list
         const updatedUsers = usersWithCurrentUser.filter(user => user.userId !== userId);
         setUsersWithCurrentUser(updatedUsers);
-        // Remove corresponding amount
         const updatedAmounts = amounts.filter((_, index) => usersWithCurrentUser[index].userId !== userId);
         setAmounts(updatedAmounts);
     };
@@ -56,7 +55,7 @@ export default function SplitExpense({ addedUsers, splitAmount, currentUser, tit
             };
 
             try {
-                await axios.post(`http://localhost:8080/splitwise-app/users/${currentUser.userId}/expenses`, expenseData, {
+                await axios.post(EXPENSES_API.ADD_EXPENSE(currentUser.userId), expenseData, {
                     headers: {
                         'Content-Type': 'application/json'
                     },

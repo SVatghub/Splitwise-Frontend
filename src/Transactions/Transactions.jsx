@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './Transactions.css';
+import { SETTLEMENT_API, USERS_API } from "../Constants/ApiConstants";
 
 export default function Transactions() {
     const { debtUserId, lenderId } = useParams();
@@ -13,16 +14,16 @@ export default function Transactions() {
     useEffect(() => {
         const fetchTransactions = async () => {
             try {
-                const debtUserResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${debtUserId}/settle/${lenderId}`);
+                const debtUserResponse = await axios.get(SETTLEMENT_API.GET_TRANSACTION_HISTORY_BETWEEN_TWO_USERS(debtUserId,lenderId));
                 setExpensesDTOSFromDebtUser(debtUserResponse.data.expensesDTOS);
 
-                const lenderResponse = await axios.get(`http://localhost:8080/splitwise-app/users/${lenderId}/settle/${debtUserId}`);
+                const lenderResponse = await axios.get(SETTLEMENT_API.GET_TRANSACTION_HISTORY_BETWEEN_TWO_USERS(lenderId,debtUserId));
                 setExpensesDTOSFromLender(lenderResponse.data.expensesDTOS);
 
-                const debtUserDetails = await axios.get(`http://localhost:8080/splitwise-app/users/${debtUserId}`);
+                const debtUserDetails = await axios.get(USERS_API.GET_BY_ID(debtUserId));
                 setDebtUserName(debtUserDetails.data.name);
 
-                const lenderDetails = await axios.get(`http://localhost:8080/splitwise-app/users/${lenderId}`);
+                const lenderDetails = await axios.get(USERS_API.GET_BY_ID(lenderId));
                 setLenderName(lenderDetails.data.name);
             } catch (error) {
                 console.error("Error getting history", error);
@@ -47,11 +48,11 @@ export default function Transactions() {
         <div className="transactions-container">
             <h1>Transactions Between {debtUserName} and {lenderName}</h1>
             <div className="transaction-section">
-                <h2>From {debtUserName} to {lenderName}</h2>
+                <h2>{debtUserName} has to Pay {lenderName}</h2>
                 {renderTransactions(expensesDTOSFromDebtUser, debtUserName, lenderName)}
             </div>
             <div className="transaction-section">
-                <h2>From {lenderName} to {debtUserName}</h2>
+                <h2>{lenderName} has to Pay {debtUserName}</h2>
                 {renderTransactions(expensesDTOSFromLender, lenderName, debtUserName)}
             </div>
         </div>

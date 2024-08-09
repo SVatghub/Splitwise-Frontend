@@ -4,8 +4,7 @@ import Debts from '../Debts/Debts';
 import Expenses from '../Expense/Expenses';
 import { useParams } from 'react-router-dom';
 import './DashBoard.css';
-
-
+import { USERS_API } from '../Constants/ApiConstants';
 
 export default function DashBoard() {
     const { userId } = useParams();
@@ -15,7 +14,7 @@ export default function DashBoard() {
 
     useEffect(() => {
         if (userId) { 
-            axios.get(`http://localhost:8080/splitwise-app/users/${userId}`)
+            axios.get(USERS_API.GET_BY_ID(userId))
                 .then(response => {
                     setUser(response.data);
                     setLoading(false);
