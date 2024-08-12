@@ -1,0 +1,51 @@
+/* Container for the entire transactions page */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.transactions-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    font-family: "Roboto";
+}
+
+/* Title for the transactions page */
+.transactions-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Section for individual transaction details */
+.transaction-section {
+    margin-bottom: 30px;
+}
+
+/* Title for each transaction section */
+.transaction-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Styles for each transaction item */
+.transaction {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Transaction details */
+.transaction p {
+    margin: 5px 0;
+    color: #333;
+}
+
+/* Separator line between transactions */
+.transaction hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin-top: 10px;
+}
