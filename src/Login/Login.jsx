@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import {USERS_API} from '../Constants/ApiConstants.js';
+import { USERS_API } from '../Constants/ApiConstants.js';
 import "./Login.css";
 
 export default function Login() {
@@ -12,7 +11,8 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(USERS_API.GET_ALL)
+        fetch(USERS_API.GET_ALL)
+            .then(res => res.json())
             .then(response => {
                 setUsers(response.data);
             })
@@ -33,13 +33,20 @@ export default function Login() {
 
     const handleSignUpSubmit = async (name, email) => {
         try {
-            await axios.post(USERS_API.ADD_USER, { name, email }, {
+            const response = await fetch(USERS_API.ADD_USER, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify({ name, email })
             });
-            alert("User registered successfully");
-            setShowSignUp(false);
+
+            if (response.ok) {
+                alert("User registered successfully");
+                setShowSignUp(false);
+            } else {
+                alert("Failed to register user");
+            }
         } catch (error) {
             console.error("There was an error registering the user!", error);
         }
@@ -49,8 +56,8 @@ export default function Login() {
         <div className="login-form-container">
             {showSignUp ? (
                 <div className="sign-up-form-container">
-                    <h2 style={{textAlign:"center"}}>Sign Up</h2>
-                    <form onSubmit={(evt) => { 
+                    <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+                    <form onSubmit={(evt) => {
                         evt.preventDefault();
                         handleSignUpSubmit(name, email);
                     }}>
@@ -96,7 +103,6 @@ export default function Login() {
                         <button type="submit">Login</button>
                         <button type="button" onClick={() => setShowSignUp(true)}>Sign Up</button>
                     </form>
-                    
                 </div>
             )}
         </div>
