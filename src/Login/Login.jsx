@@ -49,7 +49,7 @@ export default function Login() {
         <div className="login-form-container">
             {showSignUp ? (
                 <div className="sign-up-form-container">
-                    <h2>Sign Up</h2>
+                    <h2 style={{textAlign:"center"}}>Sign Up</h2>
                     <form onSubmit={(evt) => { 
                         evt.preventDefault();
                         handleSignUpSubmit(name, email);
