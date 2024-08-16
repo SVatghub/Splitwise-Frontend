@@ -7,17 +7,27 @@ export default function Login() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);  
+    const [error, setError] = useState(null);    
     const [showSignUp, setShowSignUp] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         fetch(USERS_API.GET_ALL)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return res.json();
+            })
             .then(response => {
                 setUsers(response.data);
+                setLoading(false);  
             })
             .catch(error => {
                 console.error("There was an error fetching the users!", error);
+                setError(error.message);
+                setLoading(false);  
             });
     }, []);
 
@@ -51,10 +61,14 @@ export default function Login() {
             console.error("There was an error registering the user!", error);
         }
     };
-
+    
     return (
         <div className="login-form-container">
-            {showSignUp ? (
+            {loading ? (
+                <div>Loading users...</div>
+            ) : error ? (
+                <div>Error loading users: {error}</div>
+            ) : showSignUp ? (
                 <div className="sign-up-form-container">
                     <h2 style={{ textAlign: "center" }}>Sign Up</h2>
                     <form onSubmit={(evt) => {
