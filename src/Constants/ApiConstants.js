@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://splitwise-app-env.eba-wtgpanhq.ap-south-1.elasticbeanstalk.com/splitwise-app";
+const API_BASE_URL = "http://splitwise-app-env.eba-wtgpanhq.ap-south-1.elasticbeanstalk.com/splitwise-app/";
 
 export const USERS_API = {
     GET_ALL :  `${API_BASE_URL}/users`,
