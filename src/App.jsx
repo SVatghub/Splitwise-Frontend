@@ -8,7 +8,7 @@ import Transactions from './Transactions/Transactions';
 
 function App() {
   return (
-    <>  
+    <div className='app'>  
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -18,7 +18,7 @@ function App() {
           <Route path="/transactions/:debtUserId/:lenderId" element = {<Transactions/>} />
         </Routes>
       </Router>
-    </>
+    </div>
   )
 }
 
