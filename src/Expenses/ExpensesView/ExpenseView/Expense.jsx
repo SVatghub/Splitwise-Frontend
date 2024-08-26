@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
+import { LuMoreVertical } from "react-icons/lu";
 import deleteAnimation from '../../../assets/deleteAnimation.json';  
 
 export default function Expense({ expense, userId, handleDelete }) {
@@ -26,6 +27,10 @@ export default function Expense({ expense, userId, handleDelete }) {
         }, 1000); 
     };
 
+    const handleShowStatus = (userId, expenseId) => {
+        navigate(`/dashboard/${userId}/expenses/expense/${expenseId}/status`);
+    };
+
     return (
         <div className="expense">
             {isAnimationPlaying ? (
@@ -42,6 +47,9 @@ export default function Expense({ expense, userId, handleDelete }) {
                         </button>
                         <button className="expense-button delete-button" onClick={handleDeleteClick}>
                             <FontAwesomeIcon icon={faTrash} />
+                        </button>
+                        <button className='expense-button status-button' onClick={() => handleShowStatus(userId, expense.id)}>
+                            <LuMoreVertical />
                         </button>
                     </div>
                     <div className="expense-details">

@@ -1,0 +1,23 @@
+.expense-not-settled-container {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #ff0011;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #d38f8f;
+}
+
+
+.expense-not-settled-user-info-container {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+}
+
+.expense-not-settled-amount-container{
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+}
