@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Debts from '../Debts/DebtsView/Debts';
 import Expenses from '../Expenses/ExpensesView/AllExpenseView/Expenses';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './DashBoard.css';
 import { USERS_API } from '../Constants/ApiConstants';
+import logo from '../assets/icon.png';
+import { IoMdLogOut } from "react-icons/io";
 
 export default function DashBoard() {
     const { userId } = useParams();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (userId) { 
@@ -26,6 +29,10 @@ export default function DashBoard() {
         }
     }, [userId]);
 
+    const logout = () => {
+        navigate('/');
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -36,8 +43,11 @@ export default function DashBoard() {
     return (
         <div className='dashboard'>
             <div className='dashboard-heading'>
-                <h1>Splitwise App</h1>
-                {user && <h1>{user.name}</h1>}
+                <img src={logo} alt="" />
+                <div className='dashboard-heading-user-container'>
+                    {user && <h1>{user.name}</h1>}
+                    <button onClick={logout} className="logout-button"><IoMdLogOut /></button>
+                </div>
             </div>
             <div className="dashboard-container">
                 <div className="component-container">

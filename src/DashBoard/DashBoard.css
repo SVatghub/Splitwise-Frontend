@@ -1,19 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 .dashboard{
     font-family: "Roboto";
     text-align: center;
 }
 
 .dashboard-heading{
-    margin: 0 auto;
-    margin-top: 1rem;
-    width: 80%;
+    background-color: #83c5be;
+    padding: 1rem 7rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 2rem;
-    padding-right: 2rem;
+}
+
+.dashboard-heading img{
+    height: 80px;
+    width: 80px;
+}
+
+.dashboard-heading-user-container{
+    display: flex;
+    align-items: center;
+}
+
+.logout-button {
+    margin-left: 2rem;
+    padding: 10px 12px;
+    color: rgb(227, 11, 11);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: larger;
+}
+
+.logout-button:hover {
+    background-color: #1c1a25;
 }
 
 .dashboard-container {
@@ -42,3 +61,4 @@
     text-align: center;
     margin-bottom: 1.5rem;
 } 
+

@@ -1,6 +1,3 @@
-/* Import Google Fonts (you can include this in your HTML <head> or in your CSS file) */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
 .expense {
     margin-top: 3%;
     width: 80%;
@@ -12,8 +9,13 @@
     position: relative;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
+    transition: opacity 0.3s ease-in-out; /* For smooth fade-out when deleting */
+}
+
+.expense.fade-out {
+    opacity: 0; /* Fade out effect for delete animation */
 }
 
 .expense-details {
@@ -34,6 +36,9 @@
 }
 
 .expense-amount {
+    margin: 20px;
+    margin-top: 30px;
+    margin-right: 0;
     font-size: 1.8rem;
     font-weight: 700;
     color: #007bff;
@@ -53,6 +58,7 @@
     cursor: pointer;
     font-size: 1.2rem;
     color: #333;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out; 
 }
 
 .edit-button {
@@ -61,4 +67,57 @@
 
 .delete-button {
     color: #dc3545;
+}
+
+.expense-button:hover {
+    transform: scale(1.2); /* Zoom effect on hover */
+}
+
+.edit-button:hover {
+    color: #ff9800; /* Darker yellow on hover */
+}
+
+.delete-button:hover {
+    color: #e60000; /* Darker red on hover */
+}
+
+.lottie-animation {
+    width: 100%;
+    height: 100%; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: 2; 
+    scale: 3;
+    
+}
+.expense-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
+.expense-status{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 200px;
+    border-radius: 4px;
+    color: black;
+    background-color: #ffc107;
+}
+
+.expense-status-completed{
+    color: green;
+}
+.expense-status-partially{
+    color: #bb3e03;
+}
+
+.expense-status-no-payment-received{
+    color: #c1121f;
 }

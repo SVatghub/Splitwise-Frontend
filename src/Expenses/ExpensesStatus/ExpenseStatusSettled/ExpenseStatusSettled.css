@@ -1,0 +1,26 @@
+.expense-settled-container {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #417e49;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #e6f7e6;
+}
+
+.expense-settled-user-info-container {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+}
+
+.expense-settled-icon-container {
+  transform: scale(2);
+}
+
+.expense-settled-amount-container{
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+}

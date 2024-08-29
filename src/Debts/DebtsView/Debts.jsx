@@ -9,35 +9,45 @@ export default function Debts({userId}) {
     const[loading,setLoading] = useState(true)
     const[error,setError] = useState(null)
 
-    useEffect(()=>{
-        axios.get(SETTLEMENT_API.GET_NET_DEBTS_TO_PAY_BY_USERID(userId))
-        .then((response)=>{
-            setUserDebts(response.data);
-            setLoading(false);
-        })
-        .catch((error)=>{
-            setError(error);
-        }) 
-    },[userId])
+  useEffect(() => {
+    axios
+      .get(SETTLEMENT_API.GET_NET_DEBTS_TO_PAY_BY_USERID(userId))
+      .then((response) => {
+        setUserDebts(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [userId]);
 
-    if(loading){
-        return <div>Loading</div>
-    }
-
-    if(error){
-        return <div>Error : {error}</div>
-    }
-
-    return (
-        <div className="debts-container">
-            <h1>You Need to Pay :</h1>
-            {
-                userDebts.map((debt, index) => (
-                    <div className="debt-item" key={index}>
-                        <Debt Debt={debt} debtUserId={userId}/>  
-                    </div>
-                ))
-            }
-        </div>
+  const handleDebtSettled = (settledUserId) => {
+    setUserDebts((prevDebts) =>
+      prevDebts.filter((debt) => debt.userId !== settledUserId)
     );
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return (
+    <div className="debts-container">
+      <h1>You Need to Pay:</h1>
+      {userDebts.map((debt, index) => (
+        <div className="debt-item" key={index}>
+          <Debt
+            Debt={debt}
+            debtUserId={userId}
+            onDebtSettled={handleDebtSettled}
+          />
+        </div>
+      ))}
+    </div>
+  );
 }
