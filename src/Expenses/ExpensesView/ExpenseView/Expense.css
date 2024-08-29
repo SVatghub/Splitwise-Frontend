@@ -36,6 +36,9 @@
 }
 
 .expense-amount {
+    margin: 20px;
+    margin-top: 30px;
+    margin-right: 0;
     font-size: 1.8rem;
     font-weight: 700;
     color: #007bff;
@@ -93,4 +96,28 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+
+.expense-status{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 200px;
+    border-radius: 4px;
+    color: black;
+    background-color: #ffc107;
+}
+
+.expense-status-completed{
+    color: green;
+}
+.expense-status-partially{
+    color: #bb3e03;
+}
+
+.expense-status-no-payment-received{
+    color: #c1121f;
 }
